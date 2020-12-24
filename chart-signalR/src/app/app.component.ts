@@ -40,6 +40,7 @@ export class AppComponent implements OnInit{
     this.startHttpRequest();
     this.data = this.signalRService.data;
     this.signalRService.listenBroadCast();
+    this.signalRService.listenLiveTable();
   }
 
   private startHttpRequest = () => {

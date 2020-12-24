@@ -8,6 +8,7 @@ import { ChartModel } from "../chart.model";
 })
 export class SignalRService {
   public data: ChartModel[];
+  public tableData: TableData[];
   private hubConnection: signalR.HubConnection;
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
@@ -29,4 +30,15 @@ export class SignalRService {
       console.log(message);
     });
   };
+
+  public listenLiveTable = () => {
+    this.hubConnection.on("ReloadTable", (data) => {
+      this.tableData = data;
+      console.log(this.tableData);
+    })
+  }
+}
+export interface TableData {
+  id: number;
+  name: string;
 }

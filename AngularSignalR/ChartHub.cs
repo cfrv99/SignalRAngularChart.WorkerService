@@ -12,5 +12,10 @@ namespace AngularSignalR
         {
             await Clients.All.SendAsync("ReceiveData", name);
         }
+
+        public async Task LiveTable(List<TableData> list)
+        {
+            await Clients.All.SendAsync("ReloadTable", list);
+        }
     }
 }
